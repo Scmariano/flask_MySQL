@@ -1,6 +1,9 @@
+from msilib import schema
 from flask_app.config.mysqlconnection import connectToMySQL
 
+
 class User:
+    schema = 'work_bench_setup'
     def __init__(self, data):
         self.id = data['id']
         self.first_name = data['first_name']
@@ -11,8 +14,8 @@ class User:
 
     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM users;"
-        results = connectToMySQL('work_bench_setup').query_db(query)
+        query = "SELECT * FROM users"
+        results = connectToMySQL(cls.schema).query_db(query)
         users = []
         for i in results:
             users.append( cls(i) )
@@ -20,5 +23,5 @@ class User:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO users (first_name, last_name, email) VALUES (%(first_name)s,%(last_name)s,%(email)s);"
-        return connectToMySQL('work_bench_setup').query_db(query,data)
+        query = "INSERT INTO users (first_name, last_name, email, created_at, updated_at) VALUES (%(first_name)s,%(last_name)s,%(email)s, NOW() , NOW());"
+        return connectToMySQL(cls.schema).query_db(query,data)

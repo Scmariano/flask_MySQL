@@ -10,20 +10,21 @@
 </head>
 <body>
     <h2 class="text-center">Add New User</h2>
-    <form action="/user_create" class="col-lg-6 mx-lg-auto" method="POST">
+    
+    <form action="/create/user" class="col-lg-6 mx-lg-auto" method="POST">
         <div class="mb-3">
             <label for="first_name" class="form-label">First Name:</label>
-            <input type="text"  name="first_name" class="form-control">
+            <input type="text"  name="first_name" class="form-control" required>
         </div>
         <div class="mb-3">
             <label for="last_name" class="form-label">Last Name:</label>
-            <input type="text" class="form-control" name="last_name">
+            <input type="text" class="form-control" name="last_name" required>
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
-            <input type="email" name="last_name" class="form-control"  >
+            <input type="email" name="email" class="form-control" required >
         </div>
-        <input type="submit" value="Add User" class="btn btn-primary">
+        <button class="btn btn-primary" type="submit"> Add User</button>
     </form>
 
 
